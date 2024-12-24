@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+
+<div class="hero-section">
+  <div class="overlay">
+    <div class="content text-center text-white">
+      <h1 class="display-4 fw-bold">Welcome to Trending Topics</h1>
+      <p class="lead">Discover the latest trends around the globe in one click.</p>
+      <form action="/scrape" method="POST">
+        <button type="submit" class="btn btn-primary btn-lg mt-4">Fetch Trends</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <% if (results) { %>
+    <div class="card shadow p-4">
+      <h3 class="text-center">Trending Topics as of <%= results.end_time %></h3>
+      <ul class="list-group list-group-flush mt-3">
+        <li class="list-group-item">1. <%= results.trend1 %></li>
+        <li class="list-group-item">2. <%= results.trend2 %></li>
+        <li class="list-group-item">3. <%= results.trend3 %></li>
+        <li class="list-group-item">4. <%= results.trend4 %></li>
+        <li class="list-group-item">5. <%= results.trend5 %></li>
+      </ul>
+      <p class="mt-3 text-muted">IP Address Used: <%= results.ip_address %></p>
+    </div>
+  <% } else { %>
+    <p class="text-center text-secondary">No data available yet. Click the button above to get the latest trends.</p>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>
